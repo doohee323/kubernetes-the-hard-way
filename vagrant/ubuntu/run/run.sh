@@ -3,10 +3,10 @@ set -e
 #set -x
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 01.setting ssh among nodes "
+echo " 04-certificate-authority.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../.vagrant/machines/master-1/virtualbox/private_key \
-    vagrant@192.168.5.11 /bin/bash /vagrant/run/01.make_sshkey.sh
+    vagrant@192.168.5.11 /bin/bash /vagrant/run/04-certificate-authority.sh
 
 echo "appending master's .ssh/id_rsa.pub to other nodes' authorized_keys!"
 for e in master_2 worker_1 worker_2 loadbalancer; do
@@ -30,39 +30,40 @@ done
 rm -Rf authorized_keys
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 02.tls_certificates.sh "
+echo " 05-kubernetes-configuration-files.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/02.tls_certificates.sh
+        /bin/bash /vagrant/ubuntu/run/05-kubernetes-configuration-files.sh
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 03.k8s_auth.sh "
+echo " 06-data-encryption-keys.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/03.k8s_auth.sh
+        /bin/bash /vagrant/ubuntu/run/06-data-encryption-keys.sh
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 04.encryt_key.sh "
+echo " 07-bootstrapping-etcd.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/04.encryt_key.sh
+        /bin/bash /vagrant/ubuntu/run/07-bootstrapping-etcd.sh
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 05.etcd_server.sh "
+echo " 08-bootstrapping-kubernetes-controllers.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/05.etcd_server.sh
+        /bin/bash /vagrant/ubuntu/run/08-bootstrapping-kubernetes-controllers.sh
 sleep 3
 ssh -i ../.vagrant/machines/master-2/virtualbox/private_key vagrant@192.168.5.12 \
-        /bin/bash /vagrant/ubuntu/run/05.etcd_server.sh
+        /bin/bash /vagrant/ubuntu/run/08-bootstrapping-kubernetes-controllers.sh
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 06-1.control_plane.sh / 06-2.loadbalancer.sh "
+echo " 09.1-bootstrapping-kubernetes-workers.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/06-1.control_plane.sh
+        /bin/bash /vagrant/ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
 ssh -i ../.vagrant/machines/master-2/virtualbox/private_key vagrant@192.168.5.12 \
-        /bin/bash /vagrant/ubuntu/run/06-1.control_plane.sh
+        /bin/bash /vagrant/ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
 sleep 3
 ssh -i ../.vagrant/machines/loadbalancer/virtualbox/private_key vagrant@192.168.5.30 \
-        /bin/bash /vagrant/ubuntu/run/06-2.loadbalancer.sh
+        /bin/bash /vagrant/ubuntu/run/09.2-bootstrapping-kubernetes-workers.sh
+

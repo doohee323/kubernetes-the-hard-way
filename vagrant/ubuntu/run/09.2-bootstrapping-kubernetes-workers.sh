@@ -127,7 +127,7 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
-sudo sed -i s/HOSTNAME/${HOSTNAME}/g /etc/systemd/system/kubelet.service
+sudo sed -i "s/HOSTNAME/${HOSTNAME}/g" /etc/systemd/system/kubelet.service
 
 echo "====================================================================="
 echo " Configure the Kubernetes Proxy"

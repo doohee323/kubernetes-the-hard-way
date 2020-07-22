@@ -74,7 +74,7 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
-sudo sed -i s/INTERNAL_IP/${INTERNAL_IP}/g /etc/systemd/system/kube-apiserver.service
+sudo sed -i "s/INTERNAL_IP/${INTERNAL_IP}/g" /etc/systemd/system/kube-apiserver.service
 
 echo "====================================================================="
 echo " Configure the Kubernetes Controller Manager"
@@ -139,6 +139,7 @@ sleep 5
 echo "====================================================================="
 echo " Validataion"
 echo "====================================================================="
+set +e
 kubectl get componentstatuses --kubeconfig admin.kubeconfig
 
-
+exit 0

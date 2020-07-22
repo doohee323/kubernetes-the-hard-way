@@ -26,7 +26,7 @@ resources:
               secret: ENCRYPTION_VAL
       - identity: {}
 EOF
-sed -i s/ENCRYPTION_VAL/${ENCRYPTION_KEY}/g encryption-config.yaml
+sed -i "s|ENCRYPTION_VAL|${ENCRYPTION_KEY}|g" encryption-config.yaml
 
 echo "====================================================================="
 echo " Distribute the Configuration Files"

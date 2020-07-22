@@ -55,8 +55,8 @@ echo "====================================================================="
 echo " Configure the etcd Server"
 echo "====================================================================="
 
-sudo sed -i s/ETCD_NAME/${ETCD_NAME}/g /etc/systemd/system/etcd.service
-sudo sed -i s/INTERNAL_IP/${INTERNAL_IP}/g /etc/systemd/system/etcd.service
+sudo sed -i "s/ETCD_NAME/${ETCD_NAME}/g" /etc/systemd/system/etcd.service
+sudo sed -i "s/INTERNAL_IP/${INTERNAL_IP}/g" /etc/systemd/system/etcd.service
 
 sudo systemctl daemon-reload
 sudo systemctl enable etcd
@@ -65,8 +65,11 @@ sudo systemctl start etcd
 echo "====================================================================="
 echo " Validataion"
 echo "====================================================================="
+set +e
 sudo ETCDCTL_API=3 etcdctl member list \
   --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/etcd/ca.crt \
   --cert=/etc/etcd/etcd-server.crt \
   --key=/etc/etcd/etcd-server.key
+
+exit 0

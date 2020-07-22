@@ -134,3 +134,5 @@ for instance in master-1 master-2; do
     etcd-server.key etcd-server.crt \
     ${instance}:~/
 done
+
+

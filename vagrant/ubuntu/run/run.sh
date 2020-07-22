@@ -2,6 +2,78 @@
 set -e
 #set -x
 
+
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 09.1-bootstrapping-kubernetes-workers.sh - 1st Way - manaual managing"
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
+ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key vagrant@192.168.5.21 \
+        /bin/bash /vagrant/ubuntu/run/09.12-bootstrapping-kubernetes-workers.sh
+        
+sleep 3
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 09.1-bootstrapping-kubernetes-workers.sh - 2nd Way - worker node by itself"
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/worker-2/virtualbox/private_key vagrant@192.168.5.22 \
+        /bin/bash /vagrant/ubuntu/run/09.2-bootstrapping-kubernetes-workers.sh
+sleep 3
+
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 10.1-tls-bootstrapping-kubernetes-workers.sh "
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/10.1-tls-bootstrapping-kubernetes-workers.sh
+sleep 3
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/10.2-tls-bootstrapping-kubernetes-workers.sh
+
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 11-configuring-kubectl.sh "
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/11-configuring-kubectl.sh
+  
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 12.1-configure-pod-networking.sh "
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key vagrant@192.168.5.21 \
+        /bin/bash /vagrant/ubuntu/run/12.1-configure-pod-networking.sh
+ssh -i ../../.vagrant/machines/worker-2/virtualbox/private_key vagrant@192.168.5.22 \
+        /bin/bash /vagrant/ubuntu/run/12.1-configure-pod-networking.sh
+sleep 3 
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/12.2-configure-pod-networking.sh
+
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 13-kube-apiserver-to-kubelet.sh "
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/13-kube-apiserver-to-kubelet.sh
+
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 14-dns-addon.sh "
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/14-dns-addon.sh
+
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 15-smoke-test.sh "
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/15-smoke-test.sh
+
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 16-e2e-tests.sh "
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/16-e2e-tests.sh
+
+        
+        
+exit 0
+
+
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 03-client-tools.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -66,75 +138,5 @@ ssh -i ../../.vagrant/machines/master-2/virtualbox/private_key vagrant@192.168.5
 sleep 3
 ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key vagrant@192.168.5.30 \
         /bin/bash /vagrant/ubuntu/run/08.2-bootstrapping-kubernetes-controllers.sh
-
-exit 0
-
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 09.1-bootstrapping-kubernetes-workers.sh "
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 1st Way - manaual managing"
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
-sleep 3
-echo " 2st Way - worker node by itself"
-ssh -i ../../.vagrant/machines/worker-2/virtualbox/private_key vagrant@192.168.5.22 \
-        /bin/bash /vagrant/ubuntu/run/09.2-bootstrapping-kubernetes-workers.sh
-sleep 3
-
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 10.1-tls-bootstrapping-kubernetes-workers.sh "
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/10.1-tls-bootstrapping-kubernetes-workers.sh
-sleep 3
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/10.2-tls-bootstrapping-kubernetes-workers.sh
-
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 11-configuring-kubectl.sh "
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/11-configuring-kubectl.sh
-  
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 12.1-configure-pod-networking.sh "
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key vagrant@192.168.5.21 \
-        /bin/bash /vagrant/ubuntu/run/12.1-configure-pod-networking.sh
-ssh -i ../../.vagrant/machines/worker-2/virtualbox/private_key vagrant@192.168.5.22 \
-        /bin/bash /vagrant/ubuntu/run/12.1-configure-pod-networking.sh
-sleep 3 
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/12.2-configure-pod-networking.sh
-
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 13-kube-apiserver-to-kubelet.sh "
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/13-kube-apiserver-to-kubelet.sh
-
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 14-dns-addon.sh "
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/14-dns-addon.sh
-
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 15-smoke-test.sh "
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/15-smoke-test.sh
-
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 16-e2e-tests.sh "
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/16-e2e-tests.sh
-
-        
-        
-exit 0
-
-
 
 exit 0

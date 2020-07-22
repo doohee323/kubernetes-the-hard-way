@@ -9,9 +9,7 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 
 sleep 5
 
-kubectl get pods -n kube-system
-
-
+kubectl get pods -n kube-system -o wide
 
 
 

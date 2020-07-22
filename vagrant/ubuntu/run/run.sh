@@ -2,7 +2,6 @@
 set -e
 #set -x
 
-
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 03-client-tools.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -71,14 +70,12 @@ ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key vagrant@192.1
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 09.1-bootstrapping-kubernetes-workers.sh - 1st Way - manaual managing"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-#ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-#        /bin/bash /vagrant/ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
-#ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key vagrant@192.168.5.21 \
-#        /bin/bash /vagrant/ubuntu/run/09.12-bootstrapping-kubernetes-workers.sh
-#ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-#		/usr/local/bin/kubectl get nodes --kubeconfig admin.kubeconfig     
-
-exit 0
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+        /bin/bash /vagrant/ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
+ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key vagrant@192.168.5.21 \
+        /bin/bash /vagrant/ubuntu/run/09.12-bootstrapping-kubernetes-workers.sh
+ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+		/usr/local/bin/kubectl get nodes --kubeconfig admin.kubeconfig     
 
 sleep 3
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -90,8 +87,6 @@ ssh -i ../../.vagrant/machines/worker-2/virtualbox/private_key vagrant@192.168.5
         /bin/bash /vagrant/ubuntu/run/10.2-tls-bootstrapping-kubernetes-workers.sh
 ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
 		/usr/local/bin/kubectl get nodes --kubeconfig admin.kubeconfig     
-
-exit 0
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 11-configuring-kubectl.sh "
@@ -128,10 +123,14 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
         /bin/bash /vagrant/ubuntu/run/15-smoke-test.sh
 
+exit 0
+
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 16-e2e-tests.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
         /bin/bash /vagrant/ubuntu/run/16-e2e-tests.sh
+
+
 
 

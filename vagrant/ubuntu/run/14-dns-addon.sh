@@ -14,6 +14,10 @@ echo "====================================================================="
 echo " Verification"
 echo "====================================================================="
 
+WEAVE_ID=`kubectl get pods -n kube-system | grep 'weave-net' | head -n 1 | awk '{print $1}'`
+ 
+kubectl logs $WEAVE_ID weave -n kube-system
+
 kubectl run --generator=run-pod/v1  busybox --image=busybox:1.28 --command -- sleep 3600
 
 echo sleep 60
@@ -22,3 +26,4 @@ sleep 60
 kubectl get pods -l run=busybox
 
 kubectl exec -ti busybox -- nslookup kubernetes
+

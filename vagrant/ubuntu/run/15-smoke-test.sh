@@ -20,7 +20,7 @@ sudo ETCDCTL_API=3 etcdctl get \
   --key=/etc/etcd/etcd-server.key\
   /registry/secrets/default/kubernetes-the-hard-way | hexdump -C
 
-#kubectl delete secret kubernetes-the-hard-way
+kubectl delete secret kubernetes-the-hard-way
 
 echo "====================================================================="
 echo " Deployments"

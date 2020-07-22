@@ -5,6 +5,7 @@ set -e
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " Run End-to-End Tests "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+sudo apt-get install jq golang-go -y
 
 wget https://dl.google.com/go/go1.12.1.linux-amd64.tar.gz
 

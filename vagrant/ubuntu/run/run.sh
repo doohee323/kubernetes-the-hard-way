@@ -47,9 +47,6 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
         /bin/bash /vagrant/ubuntu/run/06-data-encryption-keys.sh
 
-exit 0
-
-
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 07-bootstrapping-etcd.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -69,6 +66,8 @@ ssh -i ../../.vagrant/machines/master-2/virtualbox/private_key vagrant@192.168.5
 sleep 3
 ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key vagrant@192.168.5.30 \
         /bin/bash /vagrant/ubuntu/run/08.2-bootstrapping-kubernetes-controllers.sh
+
+exit 0
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 09.1-bootstrapping-kubernetes-workers.sh "
@@ -131,3 +130,11 @@ echo " 16-e2e-tests.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
         /bin/bash /vagrant/ubuntu/run/16-e2e-tests.sh
+
+        
+        
+exit 0
+
+
+
+exit 0

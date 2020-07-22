@@ -3,8 +3,34 @@ set -e
 #set -x
 
 echo "====================================================================="
+echo " Configure the Kubelet on Worker"
+echo "====================================================================="
+
+wget -q --show-progress --https-only --timestamping \
+  https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubectl \
+  https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kube-proxy \
+  https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubelet
+
+sudo mkdir -p \
+  /etc/cni/net.d \
+  /opt/cni/bin \
+  /var/lib/kubelet \
+  /var/lib/kube-proxy \
+  /var/lib/kubernetes \
+  /var/run/kubernetes
+
+sudo chmod +x kubectl kube-proxy kubelet
+sudo mv kubectl kube-proxy kubelet /usr/local/bin/
+
+sudo cp -Rf ca.crt /var/lib/kubernetes/
+
+echo "====================================================================="
 echo " Step 4 Configure Kubelet to TLS Bootstrap"
 echo "====================================================================="
+#sudo kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig set-cluster bootstrap --server='https://192.168.5.30:6443' --certificate-authority=/var/lib/kubernetes/ca.crt
+#sudo kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig set-credentials kubelet-bootstrap --token=07401b.f395accd246ae52d
+#sudo kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig set-context bootstrap --user=kubelet-bootstrap --cluster=bootstrap
+#sudo kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig use-context bootstrap
 
 cat <<EOF | sudo tee /var/lib/kubelet/bootstrap-kubeconfig
 apiVersion: v1
@@ -72,6 +98,7 @@ ExecStart=/usr/local/bin/kubelet \\
   --rotate-server-certificates=true \\
   --network-plugin=cni \\
   --register-node=true \\
+  --fail-swap-on=false \\
   --v=2
 Restart=on-failure
 RestartSec=5

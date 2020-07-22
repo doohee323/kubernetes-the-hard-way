@@ -68,18 +68,18 @@ sleep 3
 ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key vagrant@192.168.5.30 \
         /bin/bash /vagrant/ubuntu/run/08.2-bootstrapping-kubernetes-controllers.sh
 
-exit 0
-
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 09.1-bootstrapping-kubernetes-workers.sh - 1st Way - manaual managing"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-        /bin/bash /vagrant/ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
-ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key vagrant@192.168.5.21 \
-        /bin/bash /vagrant/ubuntu/run/09.12-bootstrapping-kubernetes-workers.sh
-ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
-		/usr/local/bin/kubectl get nodes --kubeconfig admin.kubeconfig     
-        
+#ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+#        /bin/bash /vagrant/ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
+#ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key vagrant@192.168.5.21 \
+#        /bin/bash /vagrant/ubuntu/run/09.12-bootstrapping-kubernetes-workers.sh
+#ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
+#		/usr/local/bin/kubectl get nodes --kubeconfig admin.kubeconfig     
+
+exit 0
+
 sleep 3
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 10.1-tls-bootstrapping-kubernetes-workers.sh - 2nd Way - worker node by itself"

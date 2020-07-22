@@ -6,32 +6,13 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 10.1-tls-bootstrapping-kubernetes-workers.sh - 2nd Way - worker node by itself"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
-echo "====================================================================="
-echo " Configure the Kubelet on Worker"
-echo "====================================================================="
-
-wget -q --show-progress --https-only --timestamping \
-  https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubectl \
-  https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kube-proxy \
-  https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubelet
-
-sudo mkdir -p \
-  /etc/cni/net.d \
-  /opt/cni/bin \
-  /var/lib/kubelet \
-  /var/lib/kube-proxy \
-  /var/lib/kubernetes \
-  /var/run/kubernetes
-
-sudo chmod +x kubectl kube-proxy kubelet
-sudo mv kubectl kube-proxy kubelet /usr/local/bin/
-
-sudo mv ca.crt /var/lib/kubernetes/
+ps -ef | grep kube-apiserver | grep "enable-bootstrap-token-auth=true"
+ps -ef | grep kube-controller-manager | grep "cluster-signing-cert-file=/var/lib/kubernetes/ca.crt" | grep "cluster-signing-key-file=/var/lib/kubernetes/ca.key"
 
 echo "====================================================================="
 echo " Step 1 Create the Boostrap Token to be used by Nodes(Kubelets) to invoke Certificate API"
 echo "====================================================================="
-kubectl get nodes --kubeconfig admin.kubeconfig
+#kubectl get nodes --kubeconfig admin.kubeconfig
 
 rm -Rf bootstrap-token-07401b
 cat > bootstrap-token-07401b.yaml <<EOF

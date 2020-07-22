@@ -26,6 +26,9 @@ kubectl config set-context kubernetes-the-hard-way \
 
 kubectl config use-context kubernetes-the-hard-way
 
+kubectl config view
+cat .kube/config
+
 kubectl get componentstatuses
 
 kubectl get nodes

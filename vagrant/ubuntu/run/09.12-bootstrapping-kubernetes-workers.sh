@@ -27,7 +27,7 @@ if [[ -f ${HOSTNAME}.key ]]; then
     sudo mv ${HOSTNAME}.kubeconfig /var/lib/kubelet/kubeconfig
 fi
 if [[ -f ca.crt ]]; then
-    sudo mv ca.crt /var/lib/kubernetes/
+    sudo cp -Rf ca.crt /var/lib/kubernetes/
 fi
 
 sudo rm -Rf /var/lib/kubelet/kubelet-config.yaml
@@ -66,6 +66,7 @@ ExecStart=/usr/local/bin/kubelet \\
   --tls-private-key-file=/var/lib/kubelet/HOSTNAME.key \\
   --network-plugin=cni \\
   --register-node=true \\
+  --fail-swap-on=false \\
   --v=2
 Restart=on-failure
 RestartSec=5

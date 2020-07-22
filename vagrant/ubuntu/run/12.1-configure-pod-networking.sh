@@ -12,6 +12,7 @@ echo "====================================================================="
 
 wget https://github.com/containernetworking/plugins/releases/download/v0.7.5/cni-plugins-amd64-v0.7.5.tgz
 
+sudo mkdir -p /opt/cni/bin
 sudo tar -xzvf cni-plugins-amd64-v0.7.5.tgz --directory /opt/cni/bin/
 
 

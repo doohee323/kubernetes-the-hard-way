@@ -134,9 +134,4 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../../.vagrant/machines/master-1/virtualbox/private_key vagrant@192.168.5.11 \
         /bin/bash /vagrant/ubuntu/run/16-e2e-tests.sh
 
-        
-        
-exit 0
 
-
-exit 0

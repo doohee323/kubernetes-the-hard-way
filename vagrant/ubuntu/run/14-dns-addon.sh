@@ -16,6 +16,7 @@ echo "====================================================================="
 
 kubectl run --generator=run-pod/v1  busybox --image=busybox:1.28 --command -- sleep 3600
 
+echo sleep 60
 sleep 60
 
 kubectl get pods -l run=busybox

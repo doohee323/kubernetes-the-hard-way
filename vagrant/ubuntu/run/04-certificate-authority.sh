@@ -135,4 +135,5 @@ for instance in master-1 master-2; do
     ${instance}:~/
 done
 
+scp ca.crt worker-2:~/
 

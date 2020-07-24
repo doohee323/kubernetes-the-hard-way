@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set +e
 #set -x
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -13,6 +13,13 @@ kubectl get pods -l k8s-app=kube-dns -n kube-system
 echo "====================================================================="
 echo " Verification"
 echo "====================================================================="
+
+kubectl get csr
+CSR=`kubectl get csr | grep Pending | awk '{print $1}'`
+
+kubectl certificate approve $CSR
+
+kubectl get csr
 
 WEAVE_ID=`kubectl get pods -n kube-system | grep 'weave-net' | head -n 1 | awk '{print $1}'`
  

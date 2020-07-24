@@ -57,3 +57,5 @@ echo " Exec"
 echo "====================================================================="
 kubectl exec -ti $POD_NAME -- nginx -v
 
+kubectl get csr
+echo kubectl certificate approve $CSR

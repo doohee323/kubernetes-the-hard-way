@@ -73,6 +73,23 @@ kubectl get PersistentVolumes --sort-by=.spec.capacity.storage
 
 kubectl get PersistentVolumes --sort-by=.spec.capacity.storage -o=custom-columns='NAME:metadata.name,CAPACITY:spec.capacity.storage'
 
+
+--sort-by=.spec.capacity.storage -o=custom-columns='NAME:metadata.name,CAPACITY:spec.capacity.storage'
+
+
+DEPLOYMENT CONTAINER_IMAGE READY_REPLICAS NAMESPACE
+
+
+k get deployments -n admin2406 --sort-by=.metadata.name -o=custom-columns='NAME:metadata.name,CONTAINER_IMAGE:spec.template.spec.containers[*].image,READY_REPLICAS:status.availableReplicas,NAMESPACE:metadata.namespace' > /opt/admin2406_data
+
+NAME:metadata.name,CONTAINER_IMAGE:spec.template.spec.containers[*].image,READY_REPLICAS:status.availableReplicas,NAMESPACE:metadata.namespace
+
+items - name
+status - availableRepricas
+
+items - namespace
+spec - template spec containers image
+
 kubectl config view --kubeconfig=my-kube-config -o=jsonpath="{.users[*].name=='aws-user'}"
 
 kubectl config view --kubeconfig=my-kube-config -o jsonpath="{.contexts[?(@.context.user=='aws-user')].name}"

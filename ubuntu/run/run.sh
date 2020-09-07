@@ -37,15 +37,13 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 08.1-bootstrapping-kubernetes-controllers.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/08.1-bootstrapping-kubernetes-controllers.sh
-ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key doohee323@127.0.0.1 \
-        /bin/bash ubuntu/run/08.2-bootstrapping-kubernetes-controllers.sh
+/bin/bash ubuntu/run/08.2-bootstrapping-kubernetes-controllers.sh
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 09.1-bootstrapping-kubernetes-workers.sh - 1st Way - manaual managing"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/09.1-bootstrapping-kubernetes-workers.sh
-ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key doohee323@192.168.0.21 \
-        /bin/bash ubuntu/run/09.12-bootstrapping-kubernetes-workers.sh
+/bin/bash ubuntu/run/09.12-bootstrapping-kubernetes-workers.sh
 /usr/local/bin/kubectl get nodes --kubeconfig admin.kubeconfig     
 
 sleep 3

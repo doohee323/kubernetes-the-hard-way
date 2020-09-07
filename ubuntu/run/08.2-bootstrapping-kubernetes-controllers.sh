@@ -19,7 +19,7 @@ backend kubernetes-master-nodes
     mode tcp
     balance roundrobin
     option tcp-check
-    server master-1 127.0.0.1:6443 check fall 3 rise 2
+    server doohee323-desktop 127.0.0.1:6443 check fall 3 rise 2
 EOF
 
 sudo service haproxy restart

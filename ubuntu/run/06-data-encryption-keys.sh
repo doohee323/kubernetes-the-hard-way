@@ -32,7 +32,7 @@ echo "====================================================================="
 echo " Distribute the Configuration Files"
 echo "====================================================================="
 
-for instance in master-1; do
+for instance in doohee323-desktop; do
   echo $instance
   scp encryption-config.yaml ${instance}:~/
 done

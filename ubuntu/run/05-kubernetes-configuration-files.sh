@@ -117,7 +117,7 @@ for instance in worker-1 worker-2; do
   scp kube-proxy.kubeconfig ${instance}:~/
 done
 
-for instance in master-1; do
+for instance in doohee323-desktop; do
   echo $instance
   scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig ${instance}:~/
 done

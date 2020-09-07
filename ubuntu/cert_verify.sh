@@ -725,7 +725,7 @@ case $value in
     # CRT & KEY verification
     check_cert_ca
 
-    if [ $master_hostname == "master-1" ]
+    if [ $master_hostname == "doohee323-desktop" ]
       then
         check_cert_admin
         check_cert_kcm

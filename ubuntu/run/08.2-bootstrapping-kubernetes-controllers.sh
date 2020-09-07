@@ -19,7 +19,7 @@ backend kubernetes-master-nodes
     mode tcp
     balance roundrobin
     option tcp-check
-    server master-1 192.168.0.11:6443 check fall 3 rise 2
+    server master-1 192.168.0.139:6443 check fall 3 rise 2
     server master-2 192.168.0.12:6443 check fall 3 rise 2
 EOF
 

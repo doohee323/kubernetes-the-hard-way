@@ -17,7 +17,8 @@ sudo cp ca.crt etcd-server.key etcd-server.crt /etc/etcd/
 
 #INTERNAL_IP=$(ip addr show eno1 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
 INTERNAL_IP=127.0.0.1
-ETCD_NAME=$(hostname -s)
+#ETCD_NAME=$(hostname -s)
+ETCD_NAME=master-1
 echo $INTERNAL_IP
 echo $ETCD_NAME
 

@@ -133,6 +133,7 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl enable kube-apiserver kube-controller-manager kube-scheduler
+sudo systemctl stop kube-apiserver kube-controller-manager kube-scheduler
 sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler
 #sudo systemctl status kube-apiserver
 #sudo systemctl status kube-controller-manager

@@ -61,7 +61,7 @@ sudo sed -i "s/INTERNAL_IP/${INTERNAL_IP}/g" /etc/systemd/system/etcd.service
 
 sudo systemctl daemon-reload
 sudo systemctl enable etcd
-#sudo systemctl stop etcd
+sudo systemctl stop etcd
 sudo systemctl start etcd
 #sudo systemctl status etcd
 

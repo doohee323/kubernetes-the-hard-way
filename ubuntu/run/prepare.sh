@@ -2,7 +2,7 @@
 #set -e
 set -x
 
-/bin/cat /Volumes/workspace/etc/kubernetes-the-hard-way/vagrant/ubuntu/authorized_keys >> /home/vagrant/.ssh/authorized_keys
+/bin/cat /Volumes/workspace/etc/kubernetes-the-hard-way/ubuntu/authorized_keys >> /home/vagrant/.ssh/authorized_keys
 
 echo "====================================================================="
 echo " Install docker"

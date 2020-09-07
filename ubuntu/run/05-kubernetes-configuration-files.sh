@@ -122,4 +122,3 @@ for instance in master-1; do
   scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig ${instance}:~/
 done
 
-scp admin.kubeconfig worker-2:~/

@@ -53,8 +53,6 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 10.1-tls-bootstrapping-kubernetes-workers.sh - 2nd Way - worker node by itself"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/10.1-tls-bootstrapping-kubernetes-workers.sh
-ssh -i ../../.vagrant/machines/worker-2/virtualbox/private_key doohee323@192.168.0.22 \
-        /bin/bash ubuntu/run/10.2-tls-bootstrapping-kubernetes-workers.sh
 /usr/local/bin/kubectl get nodes --kubeconfig admin.kubeconfig     
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -65,10 +63,7 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 12.1-configure-pod-networking.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key doohee323@127.0.0.1 \
-        /bin/bash ubuntu/run/12.1-configure-pod-networking.sh
-ssh -i ../../.vagrant/machines/worker-2/virtualbox/private_key doohee323@192.168.0.22 \
-        /bin/bash ubuntu/run/12.1-configure-pod-networking.sh
+/bin/bash ubuntu/run/12.1-configure-pod-networking.sh
 sleep 3 
 /bin/bash ubuntu/run/12.2-configure-pod-networking.sh
 

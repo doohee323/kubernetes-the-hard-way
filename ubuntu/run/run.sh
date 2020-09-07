@@ -9,21 +9,7 @@ echo " 03-client-tools.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/03-client-tools.sh
 
-echo "appending master's .ssh/id_rsa.pub to other nodes' authorized_keys!"
-for e in master_2 worker_1 worker_2 loadbalancer; do
-    if [[ ${e} == 'worker_1' ]]; then
-        ip=192.168.0.21
-        instance='worker-1'
-    elif [[ ${e} == 'worker_2' ]]; then
-        ip=192.168.0.22
-        instance='worker-2'
-    elif [[ ${e} == 'loadbalancer' ]]; then
-        ip=192.168.0.139
-        instance='loadbalancer'
-    fi
-    ssh -o IdentitiesOnly=yes -i ../../.vagrant/machines/${instance}/virtualbox/private_key doohee323@${ip} \
-        /bin/bash ubuntu/run/prepare.sh
-done
+/bin/bash ubuntu/run/prepare.sh
 
 rm -Rf authorized_keys
 
@@ -36,6 +22,8 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 05-kubernetes-configuration-files.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/05-kubernetes-configuration-files.sh
+
+exit 0
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 06-data-encryption-keys.sh "

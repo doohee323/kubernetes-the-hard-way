@@ -8,7 +8,7 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 rm -Rf /home/doohee323/.ssh/id_rsa
 ssh-keygen -b 2048 -t rsa -f /home/doohee323/.ssh/id_rsa -q -N ""
 cat /home/doohee323/.ssh/id_rsa.pub >> /home/doohee323/.ssh/authorized_keys 
-cat /home/doohee323/.ssh/id_rsa.pub > /vagrant/ubuntu/authorized_keys
+cat /home/doohee323/.ssh/id_rsa.pub > /Volumes/workspace/etc/kubernetes-the-hard-way/vagrant/ubuntu/authorized_keys
 
 cat > /home/doohee323/.ssh/config <<EOF
 Host 192.168.0.*

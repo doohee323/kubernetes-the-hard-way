@@ -39,8 +39,6 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/08.1-bootstrapping-kubernetes-controllers.sh
 /bin/bash ubuntu/run/08.2-bootstrapping-kubernetes-controllers.sh
 
-exit 0
-
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 09.1-bootstrapping-kubernetes-workers.sh - 1st Way - manaual managing"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"

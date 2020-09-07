@@ -65,7 +65,7 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 12.1-configure-pod-networking.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key doohee323@192.168.0.21 \
+ssh -i ../../.vagrant/machines/worker-1/virtualbox/private_key doohee323@127.0.0.1 \
         /bin/bash ubuntu/run/12.1-configure-pod-networking.sh
 ssh -i ../../.vagrant/machines/worker-2/virtualbox/private_key doohee323@192.168.0.22 \
         /bin/bash ubuntu/run/12.1-configure-pod-networking.sh

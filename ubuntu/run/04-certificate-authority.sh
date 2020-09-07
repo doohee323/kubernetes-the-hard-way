@@ -127,7 +127,7 @@ ls service-account.*
 echo "====================================================================="
 echo " Distribute the Certificates"
 echo "====================================================================="
-for instance in doohee323-desktop; do
+for instance in master-1; do
   echo $instance
   scp ca.crt ca.key kube-apiserver.key kube-apiserver.crt \
     service-account.key service-account.crt \

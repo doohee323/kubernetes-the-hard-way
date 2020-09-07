@@ -21,7 +21,7 @@ keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName = @alt_names
 [alt_names]
 DNS.1 = worker-1
-IP.1 = 192.168.0.21
+IP.1 = 127.0.0.1
 EOF
 
 openssl genrsa -out worker-1.key 2048

@@ -112,12 +112,12 @@ echo "====================================================================="
 echo " Distribute the Kubernetes Configuration Files"
 echo "====================================================================="
 
-for instance in worker-1 worker-2; do
+for instance in worker-1; do
   echo $instance
   scp kube-proxy.kubeconfig ${instance}:~/
 done
 
-for instance in doohee323-desktop; do
+for instance in master-1; do
   echo $instance
   scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig ${instance}:~/
 done

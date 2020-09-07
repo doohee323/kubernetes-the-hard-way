@@ -10,7 +10,7 @@ sudo apt-get update && sudo apt-get install -y haproxy
 
 cat <<EOF | sudo tee /etc/haproxy/haproxy.cfg 
 frontend kubernetes
-    bind 192.168.0.30:6443
+    bind 192.168.0.139:6443
     option tcplog
     mode tcp
     default_backend kubernetes-master-nodes
@@ -29,7 +29,7 @@ sleep 3
 echo "====================================================================="
 echo " Validataion"
 echo "====================================================================="
-curl  https://192.168.0.30:6443/version -k
+curl  https://192.168.0.139:6443/version -k
 
 
 

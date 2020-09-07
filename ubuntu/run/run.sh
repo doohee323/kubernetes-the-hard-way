@@ -18,7 +18,7 @@ for e in master_2 worker_1 worker_2 loadbalancer; do
         ip=192.168.0.22
         instance='worker-2'
     elif [[ ${e} == 'loadbalancer' ]]; then
-        ip=192.168.0.30
+        ip=192.168.0.139
         instance='loadbalancer'
     fi
     ssh -o IdentitiesOnly=yes -i ../../.vagrant/machines/${instance}/virtualbox/private_key doohee323@${ip} \
@@ -51,7 +51,7 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 08.1-bootstrapping-kubernetes-controllers.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/08.1-bootstrapping-kubernetes-controllers.sh
-ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key doohee323@192.168.0.30 \
+ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key doohee323@192.168.0.139 \
         /bin/bash ubuntu/run/08.2-bootstrapping-kubernetes-controllers.sh
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"

@@ -32,7 +32,7 @@ ls worker-1.*
 echo "====================================================================="
 echo " The kubelet Kubernetes Configuration File"
 echo "====================================================================="
-LOADBALANCER_ADDRESS=192.168.0.30
+LOADBALANCER_ADDRESS=192.168.0.139
 
 rm -Rf worker-1.kubeconfig
 kubectl config set-cluster kubernetes-the-hard-way \

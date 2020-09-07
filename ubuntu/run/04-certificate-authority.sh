@@ -83,7 +83,7 @@ DNS.4 = kubernetes.default.svc.cluster.local
 IP.1 = 10.96.0.1
 IP.2 = 192.168.0.139
 IP.3 = 192.168.0.12
-IP.4 = 192.168.0.30
+IP.4 = 192.168.0.139
 IP.5 = 127.0.0.1
 EOF
 rm -Rf kube-apiserver.*

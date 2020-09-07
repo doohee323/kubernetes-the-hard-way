@@ -135,10 +135,3 @@ for instance in doohee323-desktop; do
     ${instance}:~/
 done
 
-for instance in worker-2; do
-  echo $instance
-  scp ca.crt \
-    ${instance}:~/
-done
-
-

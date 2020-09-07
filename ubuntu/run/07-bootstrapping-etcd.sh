@@ -15,7 +15,7 @@ sudo mv etcd-v3.3.9-linux-amd64/etcd* /usr/local/bin/
 sudo mkdir -p /etc/etcd /var/lib/etcd
 sudo cp ca.crt etcd-server.key etcd-server.crt /etc/etcd/
 
-INTERNAL_IP=$(ip addr show enp0s8 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
+INTERNAL_IP=127.0.0.1
 ETCD_NAME=$(hostname -s)
 echo $INTERNAL_IP
 echo $ETCD_NAME

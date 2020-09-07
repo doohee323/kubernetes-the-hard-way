@@ -33,14 +33,11 @@ echo " 07-bootstrapping-etcd.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/07-bootstrapping-etcd.sh
 
-exit 0
-
-
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " 08.1-bootstrapping-kubernetes-controllers.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 /bin/bash ubuntu/run/08.1-bootstrapping-kubernetes-controllers.sh
-ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key doohee323@192.168.0.139 \
+ssh -i ../../.vagrant/machines/loadbalancer/virtualbox/private_key doohee323@127.0.0.1 \
         /bin/bash ubuntu/run/08.2-bootstrapping-kubernetes-controllers.sh
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"

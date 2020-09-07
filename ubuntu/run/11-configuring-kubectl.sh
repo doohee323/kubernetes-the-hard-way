@@ -9,7 +9,7 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo "====================================================================="
 echo " The Admin Kubernetes Configuration File"
 echo "====================================================================="
-KUBERNETES_LB_ADDRESS=192.168.0.139
+KUBERNETES_LB_ADDRESS=127.0.0.1
 
 kubectl config set-cluster kubernetes-the-hard-way \
   --certificate-authority=ca.crt \

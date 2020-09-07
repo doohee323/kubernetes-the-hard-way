@@ -2,7 +2,7 @@
 set -e
 #set -x
 
-LOADBALANCER_ADDRESS=192.168.0.139
+LOADBALANCER_ADDRESS=127.0.0.1
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo " Generating Kubernetes Configuration Files for Authentication "

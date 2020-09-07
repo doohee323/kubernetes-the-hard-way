@@ -27,7 +27,7 @@ sudo cp ca.crt ca.key kube-apiserver.crt kube-apiserver.key \
   etcd-server.key etcd-server.crt \
   encryption-config.yaml /var/lib/kubernetes/
 
-INTERNAL_IP=127.0.0.1
+INTERNAL_IP=$(ip addr show eno1 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
 echo $INTERNAL_IP
 
 cat <<EOF | sudo tee /etc/systemd/system/kube-apiserver.service

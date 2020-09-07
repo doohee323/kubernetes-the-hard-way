@@ -15,7 +15,7 @@ sudo mv etcd-v3.3.9-linux-amd64/etcd* /usr/local/bin/
 sudo mkdir -p /etc/etcd /var/lib/etcd
 sudo cp ca.crt etcd-server.key etcd-server.crt /etc/etcd/
 
-INTERNAL_IP=127.0.0.1
+INTERNAL_IP=$(ip addr show eno1 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
 ETCD_NAME=$(hostname -s)
 echo $INTERNAL_IP
 echo $ETCD_NAME
@@ -60,7 +60,9 @@ sudo sed -i "s/INTERNAL_IP/${INTERNAL_IP}/g" /etc/systemd/system/etcd.service
 
 sudo systemctl daemon-reload
 sudo systemctl enable etcd
+#sudo systemctl stop etcd
 sudo systemctl start etcd
+#sudo systemctl status etcd
 
 echo "====================================================================="
 echo " Validataion"

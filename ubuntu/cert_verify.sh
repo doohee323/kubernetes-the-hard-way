@@ -430,7 +430,7 @@ check_systemd_etcd()
                 PEER_TRUSTED_CA_FILE=$(systemctl cat etcd.service | grep "\--peer-trusted-ca-file"| awk '{print $1}'| cut -d "=" -f2)
 
                 # Systemd advertise , client and peer url's
-                INTERNAL_IP=$(ip addr show enp0s8 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
+                INTERNAL_IP=$(ip addr show eno1 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
                 IAP_URL=$(systemctl cat etcd.service | grep "\--initial-advertise-peer-urls"| awk '{print $2}')
                 LP_URL=$(systemctl cat etcd.service | grep "\--listen-peer-urls"| awk '{print $2}')
                 LC_URL=$(systemctl cat etcd.service | grep "\--listen-client-urls"| awk '{print $2}')
@@ -474,7 +474,7 @@ check_systemd_api()
             then
                 printf "${NC}Systemd for kube-api service found, verifying the authenticity\n"
 
-                INTERNAL_IP=$(ip addr show enp0s8 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
+                INTERNAL_IP=$(ip addr show eno1 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
                 ADVERTISE_ADDRESS=$(systemctl cat kube-apiserver.service | grep "\--advertise-address" | awk '{print $1}' | cut -d "=" -f2)
                 CLIENT_CA_FILE=$(systemctl cat kube-apiserver.service | grep "\--client-ca-file" | awk '{print $1}' | cut -d "=" -f2)
                 ETCD_CA_FILE=$(systemctl cat kube-apiserver.service | grep "\--etcd-cafile" | awk '{print $1}' | cut -d "=" -f2)
